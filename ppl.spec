@@ -75,7 +75,7 @@ The static archives for the Parma Polyhedra Library C and C++ interfaces.
 Summary:        Utilities using the Parma Polyhedra Library
 Group:          Development/C
 Requires:       %{libpplname} = %{version}-%{release}
-BuildRequires:  libglpk-devel >= 4.13
+BuildRequires:  glpk-devel >= 4.13
 %description utils
 This package contains the mixed integer linear programming solver ppl_lpsol
 and the program ppl_lcdd for vertex/facet enumeration of convex polyhedra.
