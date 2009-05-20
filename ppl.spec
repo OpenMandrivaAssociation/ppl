@@ -12,7 +12,6 @@ Version:        0.10.2
 Release:        %mkrel 1
 Group:		Development/C
 Summary:        The Parma Polyhedra Library: a library of numerical abstractions
-Group:          Development/Libraries
 License:        GPLv3+
 URL:            http://www.cs.unipr.it/ppl/
 Source0:        ftp://ftp.cs.unipr.it/pub/ppl/releases/%{version}/%{name}-%{version}.tar.bz2
@@ -37,7 +36,7 @@ software.  This package provides all what is necessary to run
 applications using the PPL through its C and C++ interfaces.
 
 %package -n %libpplname
-Group:          Development/Libraries
+Group:          Development/C
 Summary:        The Parma Polyhedra Library: a library of numerical abstractions
 %description -n %libpplname
 The Parma Polyhedra Library (PPL) is a library for the manipulation of
@@ -54,7 +53,7 @@ applications using the PPL through its C and C++ interfaces.
 
 %package -n %libpplnamedev
 Summary:        Development tools for the Parma Polyhedra Library C and C++ interfaces
-Group:          Development/Libraries
+Group:          Development/C
 Requires:       %libpplname = %{version}-%{release}
 Requires:	gmp-devel >= 4.1.3
 Requires:	gmpxx-devel >= 4.1.3
@@ -66,7 +65,7 @@ its C and C++ interfaces.
 
 %package -n %{libpplname}-static-devel
 Summary:        Static archives for the Parma Polyhedra Library C and C++ interfaces
-Group:          Development/Libraries
+Group:          Development/C
 Requires:       %{name}-devel = %{version}-%{release}
 Provides: 	libppl-static-devel = %{version}-%{release}
 %description -n %{libpplname}-static-devel
@@ -74,7 +73,7 @@ The static archives for the Parma Polyhedra Library C and C++ interfaces.
 
 %package utils
 Summary:        Utilities using the Parma Polyhedra Library
-Group:          Development/Libraries
+Group:          Development/C
 Requires:       %{libpplname} = %{version}-%{release}
 BuildRequires:  libglpk-devel >= 4.13
 %description utils
@@ -86,7 +85,7 @@ and the program ppl_lcdd for vertex/facet enumeration of convex polyhedra.
 # The `gprolog' package is not available on ppc64:
 # the GNU Prolog interface must thus be disabled for that architecture.
 Summary:        The GNU Prolog interface of the Parma Polyhedra Library
-Group:          Development/Libraries
+Group:          Development/Other
 BuildRequires:  gprolog >= 1.2.19
 Requires:       %{libpplname} = %{version}-%{release},
 Requires:	%{libpwlname} = %{version}-%{release}
@@ -97,7 +96,7 @@ Install this package if you want to use the library in GNU Prolog programs.
 
 %package gprolog-static
 Summary:        The static archive for the GNU Prolog interface of the Parma Polyhedra Library
-Group:          Development/Libraries
+Group:          Development/Other
 Requires:       %{name}-gprolog = %{version}-%{release}
 %description gprolog-static
 This package contains the static archive for the GNU Prolog interface
@@ -106,7 +105,7 @@ of the Parma Polyhedra Library.
 
 #%package ocaml
 #Summary:        The OCaml interface of the Parma Polyhedra Library
-#Group:          Development/Libraries
+#Group:          Development/Other
 #BuildRequires:  ocaml >= 3.09
 #Requires:       %{name} = %{version}-%{release}
 #%description ocaml
@@ -116,7 +115,7 @@ of the Parma Polyhedra Library.
 
 #%package ocaml-devel
 #Summary:        The OCaml interface of the Parma Polyhedra Library
-#Group:          Development/Libraries
+#Group:          Development/Other
 #Requires:       %{name}-ocaml = %{version}-%{release}
 #%description ocaml-devel
 #This package contains libraries and signature files for developing
@@ -124,7 +123,7 @@ of the Parma Polyhedra Library.
 
 %package java
 Summary:        The Java interface of the Parma Polyhedra Library
-Group:          Development/Libraries
+Group:          Development/Java
 BuildRequires:  java-devel >= 0:1.6.0
 BuildRequires:  jpackage-utils
 Requires:       java >= 1:1.6.0
@@ -136,7 +135,7 @@ Install this package if you want to use the library in Java programs.
 
 %package java-javadoc
 Summary:        Javadocs for %{name}-java
-Group:          Documentation
+Group:          Development/Java
 Requires:       %{name}-java = %{version}-%{release}
 Requires:       jpackage-utils
 %description java-javadoc
@@ -146,7 +145,7 @@ of the Parma Polyhedra Library.
 
 %package docs
 Summary:        Documentation for the Parma Polyhedra Library
-Group:          Documentation
+Group:          Development/C
 Requires:       %{libpplname} = %{version}-%{release}
 %description docs
 This package contains all the documentations required by programmers
@@ -155,7 +154,7 @@ Install this package if you want to program with the PPL.
 
 %package -n %libpwlname
 Summary:        The Parma Watchdog Library: a C++ library for watchdog timers
-Group:          Development/Libraries
+Group:          Development/C++
 %description -n %libpwlname
 The Parma Watchdog Library (PWL) provides support for multiple,
 concurrent watchdog timers on systems providing setitimer(2).  This
@@ -165,7 +164,7 @@ Library, but is totally independent from it.
 
 %package -n %libpwlnamedev
 Summary:        Development tools for the Parma Watchdog Library
-Group:          Development/Libraries
+Group:          Development/C++
 Requires:       %libpwlname = %{version}-%{release}
 Provides:	%{name}-pwl-devel = %{version}-%{release}
 Provides:	pwl-devel = %{version}-%{release}
@@ -175,7 +174,7 @@ applications using the Parma Watchdog Library.
 
 %package -n %{libpwlname}-static-devel
 Summary:        Static archive for the Parma Watchdog Library
-Group:          Development/Libraries
+Group:          Development/C++
 Requires:       %{name}-pwl-devel = %{version}-%{release}
 Provides: 	libpwl-static-devel = %{version}-%{release}
 %description  -n %{libpwlname}-static-devel
@@ -183,7 +182,7 @@ This package contains the static archive for the Parma Watchdog Library.
 
 %package pwl-docs
 Summary:        Documentation for the Parma Watchdog Library
-Group:          Documentation
+Group:          Development/C++
 Requires:       %{libpwlname} = %{version}-%{release}
 %description pwl-docs
 This package contains all the documentations required by programmers
