@@ -358,14 +358,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n %libpwlname
 %defattr(-,root,root,-)
-%doc %{_datadir}/doc/%{name}-%{version}/pwl/BUGS
-%doc %{_datadir}/doc/%{name}-%{version}/pwl/COPYING
-%doc %{_datadir}/doc/%{name}-%{version}/pwl/CREDITS
-%doc %{_datadir}/doc/%{name}-%{version}/pwl/NEWS
-%doc %{_datadir}/doc/%{name}-%{version}/pwl/README
-%doc %{_datadir}/doc/%{name}-%{version}/pwl/gpl.txt
 %{_libdir}/libpwl.so.*
-%dir %{_datadir}/doc/%{name}-%{version}/pwl/
 
 %files -n %libpwlnamedev
 %defattr(-,root,root,-)
@@ -380,11 +373,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files pwl-docs
 %defattr(-,root,root,-)
-%doc %{_datadir}/doc/%{name}-%{version}/pwl/ChangeLog*
-%doc %{_datadir}/doc/%{name}-%{version}/pwl/README.doc
-%doc %{_datadir}/doc/%{name}-%{version}/pwl/fdl.*
-%doc %{_datadir}/doc/%{name}-%{version}/pwl/gpl.ps.gz
-%doc %{_datadir}/doc/%{name}-%{version}/pwl/gpl.pdf
-%doc %{_datadir}/doc/%{name}-%{version}/pwl/pwl-user-0.7-html/
-%doc %{_datadir}/doc/%{name}-%{version}/pwl/pwl-user-0.7.pdf
-%doc %{_datadir}/doc/%{name}-%{version}/pwl/pwl-user-0.7.ps.gz
+%doc %{_datadir}/doc/%{name}-%{version}/pwl-user-0.7-html/
+%doc %{_datadir}/doc/%{name}-%{version}/pwl-user-0.7.pdf
+%doc %{_datadir}/doc/%{name}-%{version}/pwl-user-0.7.ps.gz
