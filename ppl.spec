@@ -19,6 +19,7 @@ Source1:        ppl.hh
 Source2:        ppl_c.h
 Source3:        pwl.hh
 Patch0:         ppl-0.10.2-Makefile.patch
+Patch1:		ppl-0.10.2-gmp-5.0.patch
 BuildRequires:  gmp-devel >= 4.1.3, gmpxx-devel >= 4.1.3, m4 >= 1.4.8
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
@@ -193,10 +194,12 @@ Install this package if you want to program with the PWL.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p0
 
 %build
+autoreconf -fi
 %ifnarch ia64 ppc64 s390 s390x
-CPPFLAGS="$CPPFLAGS -I%{_libdir}/gprolog-`gprolog --version 2>&1 | head -1 | sed -e "s/.* \([^ ]*\)$/\1/g"`/include"
+CPPFLAGS="%{optflags} -I%{_libdir}/gprolog-`gprolog --version 2>&1 | head -1 | sed -e "s/.* \([^ ]*\)$/\1/g"`/include"
 %endif
 %configure2_5x --docdir=%{_datadir}/doc/%{name}-%{version} --enable-shared --enable-interfaces="c++ c gnu_prolog java" CPPFLAGS="$CPPFLAGS"
 #sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
