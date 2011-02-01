@@ -1,5 +1,5 @@
 %define 	name		ppl
-%define 	version		0.10.2
+%define 	version		0.11
 %define		ppl_major	7
 %define		libpplname	%mklibname ppl %ppl_major
 %define 	libpplnamedev	%mklibname -d ppl
@@ -8,8 +8,8 @@
 %define 	libpwlnamedev	%mklibname -d pwl
 
 Name:           ppl
-Version:        0.10.2
-Release:        %mkrel 2
+Version:        %{version}
+Release:        %mkrel 1
 Group:		Development/C
 Summary:        The Parma Polyhedra Library: a library of numerical abstractions
 License:        GPLv3+
@@ -19,7 +19,7 @@ Source1:        ppl.hh
 Source2:        ppl_c.h
 Source3:        pwl.hh
 Patch0:         ppl-0.10.2-Makefile.patch
-Patch1:		ppl-0.10.2-gmp-5.0.patch
+# Patch1:		ppl-0.10.2-gmp-5.0.patch
 BuildRequires:  gmp-devel >= 4.1.3, gmpxx-devel >= 4.1.3, m4 >= 1.4.8
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
@@ -194,7 +194,7 @@ Install this package if you want to program with the PWL.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p0
+# %patch1 -p0
 
 %build
 autoreconf -fi
@@ -294,8 +294,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %{_bindir}/ppl_lcdd
 %{_bindir}/ppl_lpsol
+%{_bindir}/ppl_pips
 %{_mandir}/man1/ppl_lcdd.1.*
 %{_mandir}/man1/ppl_lpsol.1.*
+%{_mandir}/man1/ppl_pips.1.*
 
 %ifnarch ia64 ppc64 s390 s390x
 %files gprolog
@@ -373,6 +375,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files pwl-docs
 %defattr(-,root,root,-)
-%doc %{_datadir}/doc/%{name}-%{version}/pwl-user-0.7-html/
-%doc %{_datadir}/doc/%{name}-%{version}/pwl-user-0.7.pdf
-%doc %{_datadir}/doc/%{name}-%{version}/pwl-user-0.7.ps.gz
+%doc %{_datadir}/doc/%{name}-%{version}/pwl-user-0.8-html/
+%doc %{_datadir}/doc/%{name}-%{version}/pwl-user-0.8.pdf
+%doc %{_datadir}/doc/%{name}-%{version}/pwl-user-0.8.ps.gz
