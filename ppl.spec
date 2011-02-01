@@ -243,8 +243,11 @@ install -m644 %{SOURCE3} %{buildroot}/%{_includedir}/pwl.hh
 # Install the Javadocs for ppl-java.
 mkdir -p %{buildroot}%{_javadocdir}
 mv \
-%{buildroot}/%{_datadir}/doc/%{name}-%{version}/ppl-user-java-interface-%{version}-html \
+%{buildroot}/%{_datadir}/doc/*/ppl-user-java-interface-*-html \
 %{buildroot}%{_javadocdir}/%{name}-java
+#mv \
+#%{buildroot}/%{_datadir}/doc/%{name}-%{version}/ppl-user-java-interface-%{version}-html \
+#%{buildroot}%{_javadocdir}/%{name}-java
 
 %clean
 rm -rf $RPM_BUILD_ROOT
