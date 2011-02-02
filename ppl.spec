@@ -4,9 +4,11 @@
 %define		ppl_c_major	2
 %define		libpplname	%mklibname ppl %ppl_major
 %define 	libpplnamedev	%mklibname -d ppl
+%define 	libpplnamesdev	%mklibname -d -s ppl
 %define		pwl_major	4
 %define		libpwlname	%mklibname pwl %pwl_major
 %define 	libpwlnamedev	%mklibname -d pwl
+%define 	libpwlnamesdev	%mklibname -d -s pwl
 
 Name:           ppl
 Version:        %{version}
@@ -69,13 +71,15 @@ The header files, Autoconf macro and minimal documentation for
 developing applications using the Parma Polyhedra Library through
 its C and C++ interfaces.
 
-%package -n %{libpplname}-static-devel
+%package -n %{libpplnamesdev}
 Summary:        Static archives for the Parma Polyhedra Library C and C++ interfaces
 Group:          Development/C
-Requires:       %{name}-devel = %{version}-%{release}
+Requires:       %libpplnamedev = %{version}-%{release}
 Provides: 	libppl-static-devel = %{version}-%{release}
+Provides:	%{name}-static-devel = %{version}-%{release}
+Obsoletes:	%{_lib}ppl7-static-devel
 
-%description -n %{libpplname}-static-devel
+%description -n %{libpplnamesdev}
 The static archives for the Parma Polyhedra Library C and C++ interfaces.
 
 %package utils
@@ -185,13 +189,15 @@ Provides:	pwl-devel = %{version}-%{release}
 The header files, documentation and static libraries for developing
 applications using the Parma Watchdog Library.
 
-%package -n %{libpwlname}-static-devel
+%package -n %{libpwlnamesdev}
 Summary:        Static archive for the Parma Watchdog Library
 Group:          Development/C++
-Requires:       %{name}-pwl-devel = %{version}-%{release}
+Requires:       %libpwlnamedev = %{version}-%{release}
 Provides: 	libpwl-static-devel = %{version}-%{release}
+Provides: 	pwl-static-devel = %{version}-%{release}
+Obsoletes:	%{_lib}pwl4-static-devel
 
-%description  -n %{libpwlname}-static-devel
+%description  -n %{libpwlnamesdev}
 This package contains the static archive for the Parma Watchdog Library.
 
 %package pwl-docs
@@ -302,7 +308,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/aclocal/ppl.m4
 %{_datadir}/aclocal/ppl_c.m4
 
-%files -n %{libpplname}-static-devel
+%files -n %{libpplnamesdev}
 %defattr(-,root,root,-)
 %{_libdir}/libppl.a
 %{_libdir}/libppl_c.a
@@ -391,7 +397,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libpwl.so
 %{_libdir}/libpwl.la
 
-%files -n %{libpwlname}-static-devel
+%files -n %{libpwlnamesdev}
 %defattr(-,root,root,-)
 %{_libdir}/libpwl.a
 
