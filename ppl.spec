@@ -347,6 +347,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc %{_datadir}/doc/%{name}-%{version}/fdl.*
 %doc %{_datadir}/doc/%{name}-%{version}/gpl.pdf
 %doc %{_datadir}/doc/%{name}-%{version}/gpl.ps.gz
+%if 1
+%doc %{_datadir}/doc/%{name}-%{version}/ppl-user-*
+%else
 %doc %{_datadir}/doc/%{name}-%{version}/ppl-user-%{version}-html/
 %doc %{_datadir}/doc/%{name}-%{version}/ppl-user-c-interface-%{version}-html/
 #%doc %{_datadir}/doc/%{name}-%{version}/ppl-user-ocaml-interface-%{version}-html/
@@ -361,6 +364,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc %{_datadir}/doc/%{name}-%{version}/ppl-user-java-interface-%{version}.ps.gz
 #%doc %{_datadir}/doc/%{name}-%{version}/ppl-user-ocaml-interface-%{version}.ps.gz
 %doc %{_datadir}/doc/%{name}-%{version}/ppl-user-prolog-interface-%{version}.ps.gz
+%endif
 
 %files -n %libpwlname
 %defattr(-,root,root,-)
@@ -379,10 +383,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files pwl-docs
 %defattr(-,root,root,-)
-%doc %{_datadir}/doc/%{name}-%{version}/pwl-user-0.7-html/
-%doc %{_datadir}/doc/%{name}-%{version}/pwl-user-0.7.pdf
-%doc %{_datadir}/doc/%{name}-%{version}/pwl-user-0.7.ps.gz
-#%doc %{_datadir}/doc/%{name}-%{version}/pwl-user-0.8-html/
-#%doc %{_datadir}/doc/%{name}-%{version}/pwl-user-0.8.pdf
-#%doc %{_datadir}/doc/%{name}-%{version}/pwl-user-0.8.ps.gz
-
+%if 1
+%doc %{_datadir}/doc/*/pwl-user-*/
+%else
+%doc %{_datadir}/doc/%{name}-%{version}/pwl-user-0.8-html/
+%doc %{_datadir}/doc/%{name}-%{version}/pwl-user-0.8.pdf
+%doc %{_datadir}/doc/%{name}-%{version}/pwl-user-0.8.ps.gz
+%endif
