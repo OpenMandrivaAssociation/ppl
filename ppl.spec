@@ -1,6 +1,7 @@
 %define 	name		ppl
 %define 	version		0.11
 %define		ppl_major	7
+%define		ppl_c_major	2
 %define		libpplname	%mklibname ppl %ppl_major
 %define 	libpplnamedev	%mklibname -d ppl
 %define		pwl_major	4
@@ -40,6 +41,7 @@ applications using the PPL through its C and C++ interfaces.
 %package -n %libpplname
 Group:          Development/C
 Summary:        The Parma Polyhedra Library: a library of numerical abstractions
+
 %description -n %libpplname
 The Parma Polyhedra Library (PPL) is a library for the manipulation of
 (not necessarily closed) convex polyhedra and other numerical
@@ -60,6 +62,8 @@ Requires:       %libpplname = %{version}-%{release}
 Requires:	gmp-devel >= 4.1.3
 Requires:	gmpxx-devel >= 4.1.3
 Provides:	%{name}-devel = %version-%release
+Conflicts:	%libpplname < 0.11-3
+
 %description -n %libpplnamedev
 The header files, Autoconf macro and minimal documentation for
 developing applications using the Parma Polyhedra Library through
@@ -70,6 +74,7 @@ Summary:        Static archives for the Parma Polyhedra Library C and C++ interf
 Group:          Development/C
 Requires:       %{name}-devel = %{version}-%{release}
 Provides: 	libppl-static-devel = %{version}-%{release}
+
 %description -n %{libpplname}-static-devel
 The static archives for the Parma Polyhedra Library C and C++ interfaces.
 
@@ -78,6 +83,7 @@ Summary:        Utilities using the Parma Polyhedra Library
 Group:          Development/C
 Requires:       %{libpplname} = %{version}-%{release}
 BuildRequires:  glpk-devel >= 4.13
+
 %description utils
 This package contains the mixed integer linear programming solver ppl_lpsol
 and the program ppl_lcdd for vertex/facet enumeration of convex polyhedra.
@@ -92,6 +98,7 @@ BuildRequires:  gprolog >= 1.2.19
 Requires:       %{libpplname} = %{version}-%{release},
 Requires:	%{libpwlname} = %{version}-%{release}
 Requires:	gprolog >= 1.2.19
+
 %description gprolog
 This package adds GNU Prolog support to the Parma Polyhedra Library (PPL).
 Install this package if you want to use the library in GNU Prolog programs.
@@ -100,6 +107,7 @@ Install this package if you want to use the library in GNU Prolog programs.
 Summary:        The static archive for the GNU Prolog interface of the Parma Polyhedra Library
 Group:          Development/Other
 Requires:       %{name}-gprolog = %{version}-%{release}
+
 %description gprolog-static
 This package contains the static archive for the GNU Prolog interface
 of the Parma Polyhedra Library.
@@ -131,6 +139,7 @@ BuildRequires:  jpackage-utils
 Requires:       java >= 1:1.6.0
 Requires:       jpackage-utils
 Requires:       %{libpplname} = %{version}-%{release}
+
 %description java
 This package adds Java support to the Parma Polyhedra Library.
 Install this package if you want to use the library in Java programs.
@@ -140,15 +149,15 @@ Summary:        Javadocs for %{name}-java
 Group:          Development/Java
 Requires:       %{name}-java = %{version}-%{release}
 Requires:       jpackage-utils
+
 %description java-javadoc
 This package contains the API documentation for Java interface
 of the Parma Polyhedra Library.
 
-
 %package docs
 Summary:        Documentation for the Parma Polyhedra Library
 Group:          Development/C
-Requires:       %{libpplname} = %{version}-%{release}
+
 %description docs
 This package contains all the documentations required by programmers
 using the Parma Polyhedra Library (PPL).
@@ -157,6 +166,7 @@ Install this package if you want to program with the PPL.
 %package -n %libpwlname
 Summary:        The Parma Watchdog Library: a C++ library for watchdog timers
 Group:          Development/C++
+
 %description -n %libpwlname
 The Parma Watchdog Library (PWL) provides support for multiple,
 concurrent watchdog timers on systems providing setitimer(2).  This
@@ -170,6 +180,7 @@ Group:          Development/C++
 Requires:       %libpwlname = %{version}-%{release}
 Provides:	%{name}-pwl-devel = %{version}-%{release}
 Provides:	pwl-devel = %{version}-%{release}
+
 %description -n %libpwlnamedev
 The header files, documentation and static libraries for developing
 applications using the Parma Watchdog Library.
@@ -179,18 +190,18 @@ Summary:        Static archive for the Parma Watchdog Library
 Group:          Development/C++
 Requires:       %{name}-pwl-devel = %{version}-%{release}
 Provides: 	libpwl-static-devel = %{version}-%{release}
+
 %description  -n %{libpwlname}-static-devel
 This package contains the static archive for the Parma Watchdog Library.
 
 %package pwl-docs
 Summary:        Documentation for the Parma Watchdog Library
 Group:          Development/C++
-Requires:       %{libpwlname} = %{version}-%{release}
+
 %description pwl-docs
 This package contains all the documentations required by programmers
 using the Parma Watchdog Library (PWL).
 Install this package if you want to program with the PWL.
-
 
 %prep
 %setup -q -n ppl-0.10.2
@@ -271,14 +282,15 @@ rm -rf $RPM_BUILD_ROOT
 %doc %{_datadir}/doc/%{name}-%{version}/gpl.txt
 %{_libdir}/libppl.so.%{ppl_major}
 %{_libdir}/libppl.so.%{ppl_major}.*
-%{_libdir}/libppl_c.so.*
-%{_bindir}/ppl-config
-%{_mandir}/man1/ppl-config.1.*
+%{_libdir}/libppl_c.so.%{ppl_c_major}
+%{_libdir}/libppl_c.so.%{ppl_c_major}.*
 %dir %{_libdir}/%{name}
 %dir %{_datadir}/doc/%{name}-%{version}
 
 %files -n %libpplnamedev
 %defattr(-,root,root,-)
+%{_bindir}/ppl-config
+%{_mandir}/man1/ppl-config.1.*
 %{_includedir}/ppl*.hh
 %{_includedir}/ppl_c*.h
 %{_libdir}/libppl.so
