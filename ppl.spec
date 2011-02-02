@@ -4,17 +4,17 @@
 %define		ppl_major		9
 %define		libppl			%mklibname ppl %ppl_major
 %define 	libppl_devel		%mklibname -d ppl
-%define 	libppl_static_devel	%mklibname -d -s
+%define 	libppl_static_devel	%mklibname -d -s ppl
 
 %define		ppl_c_major		4
 %define		libppl_c		%mklibname ppl_c %ppl_c_major
 %define 	libppl_c_devel		%mklibname -d ppl_c
-%define 	libppl_c_static_devel	%mklibname -d ppl_c
+%define 	libppl_c_static_devel	%mklibname -d -s ppl_c
 
 %define		pwl_major		5
 %define		libpwl			%mklibname pwl %pwl_major
 %define 	libpwl_devel		%mklibname -d pwl
-%define 	libpwl_static_devel	%mklibname -d pwl
+%define 	libpwl_static_devel	%mklibname -d -s pwl
 
 Name:		ppl
 Version:	%{version}
@@ -47,7 +47,6 @@ applications using the PPL through its C and C++ interfaces.
 #-----------------------------------------------------------------------
 %package	-n %{libppl}
 Group:		Development/C
-Requires:	%{libppl_c} = %{version}-%{release}
 Summary:	The Parma Polyhedra Library: a library of numerical abstractions
 
 %description	-n %{libppl}
@@ -83,10 +82,10 @@ applications using the PPL through its C and C++ interfaces.
 Summary:	Development tools for the Parma Polyhedra Library C and C++ interfaces
 Group:		Development/C
 Requires:	%{libppl} = %{version}-%{release}
-Requires:	%{libppl_c_devel} = %{version}-%{release}
 Requires:	gmp-devel >= 4.1.3
 Requires:	gmpxx-devel >= 4.1.3
 Provides:	%{name}-devel = %version-%release
+Conflicts:	%{_lib}ppl7 < 0.11-3
 
 %description	-n %{libppl_devel}
 The header files, Autoconf macro and minimal documentation for
@@ -109,7 +108,7 @@ Summary:	Static archives for the Parma Polyhedra Library C and C++ interfaces
 Group:		Development/C
 Requires:	%{name}-devel = %{version}-%{release}
 Provides:	libppl-static-devel = %{version}-%{release}
-Requires:	%{libppl_c_static_devel} = %{version}-%{release}
+Obsoletes:	%{_lib}ppl7-static-devel < 0.11-3
 
 %description	-n %{libppl_static_devel}
 The static archives for the Parma Polyhedra Library C and C++ interfaces.
@@ -145,6 +144,9 @@ applications using the PPL through its C and C++ interfaces.
 %package	-n %{libppl_c_devel}
 Summary:	Development tools for the Parma Polyhedra Library C and C++ interfaces
 Group:		Development/C
+Requires:	%{libppl_c} = %{version}-%{release}
+Conflicts:	%{_lib}ppl-devel < 0.11-3
+Provides:	ppl_c-devel = %{version}-%{release}
 
 %description	-n %{libppl_c_devel}
 The header files, Autoconf macro and minimal documentation for
@@ -163,8 +165,10 @@ its C and C++ interfaces.
 %package	-n %{libppl_c_static_devel}
 Summary:	Static archives for the Parma Polyhedra Library C and C++ interfaces
 Group:		Development/C
-Requires:	%{name}-devel = %{version}-%{release}
-Provides:	libppl-static-devel = %{version}-%{release}
+Requires:	%{libppl_c_devel} = %{version}-%{release}
+Provides:	libppl_c-static-devel = %{version}-%{release}
+Provides:	ppl_c-static-devel = %{version}-%{release}
+Conflicts:	%{_lib}ppl7-static-devel
 
 %description	-n %{libppl_c_static_devel}
 The static archives for the Parma Polyhedra Library C and C++ interfaces.
@@ -375,6 +379,7 @@ Summary:	Static archive for the Parma Watchdog Library
 Group:		Development/C++
 Requires:	%{name}-pwl-devel = %{version}-%{release}
 Provides: 	libpwl-static-devel = %{version}-%{release}
+Obsoletes:	%{_lib}pwl4-static-devel < 0.11-3
 
 %description	-n %{libpwl_static_devel}
 This package contains the static archive for the Parma Watchdog Library.
