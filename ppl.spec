@@ -85,7 +85,7 @@ Requires:	%{libppl} = %{version}-%{release}
 Requires:	gmp-devel >= 4.1.3
 Requires:	gmpxx-devel >= 4.1.3
 Provides:	%{name}-devel = %version-%release
-Conflicts:	%{_lib}ppl7 < 0.11-3
+Conflicts:	%{_lib}ppl7-devel < 0.11-3
 
 %description	-n %{libppl_devel}
 The header files, Autoconf macro and minimal documentation for
@@ -275,7 +275,7 @@ Summary:	The Java interface of the Parma Polyhedra Library
 Group:		Development/Java
 BuildRequires:	java-devel >= 0:1.6.0
 BuildRequires:	jpackage-utils
-Requires:	java >= 1:1.6.0
+Requires:	java >= 1.6.0
 Requires:	jpackage-utils
 Requires:	%{libppl} = %{version}-%{release}
 
