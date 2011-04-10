@@ -467,10 +467,14 @@ rm -rf $RPM_BUILD_ROOT
 
 #-----------------------------------------------------------------------
 %if %mdkversion < 200900
-%post -n %libname -p /sbin/ldconfig
+%post -n %{libppl} -p /sbin/ldconfig
+
+%post -n %{libppl_c} -p /sbin/ldconfig
 %endif
 
 #-----------------------------------------------------------------------
 %if %mdkversion < 200900
-%postun -n %libname -p /sbin/ldconfig
+%postun -n %{libppl} -p /sbin/ldconfig
+
+%postun -n %{libppl_c} -p /sbin/ldconfig
 %endif
