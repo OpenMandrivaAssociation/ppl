@@ -18,7 +18,7 @@
 
 Name:		ppl
 Version:	%{version}
-Release:	%mkrel 3
+Release:	%mkrel 4
 Group:		Development/C
 Summary:	The Parma Polyhedra Library: a library of numerical abstractions
 License:	GPLv3+
@@ -48,6 +48,9 @@ applications using the PPL through its C and C++ interfaces.
 %package	-n %{libppl}
 Group:		Development/C
 Summary:	The Parma Polyhedra Library: a library of numerical abstractions
+%if %mdkversion == 201100
+Conflicts:	%{mklibname ppl 7} = 0.11
+%endif
 
 %description	-n %{libppl}
 The Parma Polyhedra Library (PPL) is a library for the manipulation of
@@ -121,6 +124,9 @@ The static archives for the Parma Polyhedra Library C and C++ interfaces.
 %package	-n %{libppl_c}
 Group:		Development/C
 Summary:	The Parma Polyhedra Library: a library of numerical abstractions
+%if %mdkversion == 201100
+Conflicts:	%{mklibname ppl_c 2} = 0.11
+%endif
 
 %description	-n %{libppl_c}
 The Parma Polyhedra Library (PPL) is a library for the manipulation of
@@ -341,6 +347,9 @@ Install this package if you want to program with the PPL.
 %package	-n %{libpwl}
 Summary:	The Parma Watchdog Library: a C++ library for watchdog timers
 Group:		Development/C++
+%if %mdkversion == 201100
+Conflicts:	%{mklibname pwl 4} = 0.11
+%endif
 
 %description	 -n %{libpwl}
 The Parma Watchdog Library (PWL) provides support for multiple,
