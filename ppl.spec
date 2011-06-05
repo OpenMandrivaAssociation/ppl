@@ -204,7 +204,7 @@ and the program ppl_lcdd for vertex/facet enumeration of convex polyhedra.
 %{_mandir}/man1/ppl_pips.1.*
 
 #-----------------------------------------------------------------------
-%ifnarch ia64 ppc64 s390 s390x
+%ifnarch ia64 ppc64 s390 s390x %arm
 %package	gprolog
 # The `gprolog' package is not available on ppc64:
 # the GNU Prolog interface must thus be disabled for that architecture.
@@ -329,19 +329,11 @@ Install this package if you want to program with the PPL.
 %doc %{_datadir}/doc/%{name}-%{version}/gpl.pdf
 %doc %{_datadir}/doc/%{name}-%{version}/gpl.ps.gz
 %doc %{_datadir}/doc/%{name}-%{version}/ppl-user-%{version}-html/
-%doc %{_datadir}/doc/%{name}-%{version}/ppl-user-c-interface-%{version}-html/
-#%doc %{_datadir}/doc/%{name}-%{version}/ppl-user-ocaml-interface-%{version}-html/
-%doc %{_datadir}/doc/%{name}-%{version}/ppl-user-prolog-interface-%{version}-html/
+%doc %{_datadir}/doc/%{name}-%{version}/ppl-user-*-interface-%{version}-html/
 %doc %{_datadir}/doc/%{name}-%{version}/ppl-user-%{version}.pdf
-%doc %{_datadir}/doc/%{name}-%{version}/ppl-user-c-interface-%{version}.pdf
-%doc %{_datadir}/doc/%{name}-%{version}/ppl-user-java-interface-%{version}.pdf
-#%doc %{_datadir}/doc/%{name}-%{version}/ppl-user-ocaml-interface-%{version}.pdf
-%doc %{_datadir}/doc/%{name}-%{version}/ppl-user-prolog-interface-%{version}.pdf
+%doc %{_datadir}/doc/%{name}-%{version}/ppl-user-*-interface-%{version}.pdf
 %doc %{_datadir}/doc/%{name}-%{version}/ppl-user-%{version}.ps.gz
-%doc %{_datadir}/doc/%{name}-%{version}/ppl-user-c-interface-%{version}.ps.gz
-%doc %{_datadir}/doc/%{name}-%{version}/ppl-user-java-interface-%{version}.ps.gz
-#%doc %{_datadir}/doc/%{name}-%{version}/ppl-user-ocaml-interface-%{version}.ps.gz
-%doc %{_datadir}/doc/%{name}-%{version}/ppl-user-prolog-interface-%{version}.ps.gz
+%doc %{_datadir}/doc/%{name}-%{version}/ppl-user-*-interface-%{version}.ps.gz
 
 #-----------------------------------------------------------------------
 %package	-n %{libpwl}
@@ -422,7 +414,7 @@ Install this package if you want to program with the PWL.
 #-----------------------------------------------------------------------
 %build
 autoreconf -fi
-%ifnarch ia64 ppc64 s390 s390x
+%ifnarch ia64 ppc64 s390 s390x %arm
 CPPFLAGS="%{optflags} -I%{_libdir}/gprolog-`gprolog --version 2>&1 | head -1 | sed -e "s/.* \([^ ]*\)$/\1/g"`/include"
 %endif
 %configure2_5x --docdir=%{_datadir}/doc/%{name}-%{version} --enable-shared --enable-interfaces="c++ c gnu_prolog java" CPPFLAGS="$CPPFLAGS"
