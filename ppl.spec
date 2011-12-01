@@ -426,7 +426,7 @@ CPPFLAGS="%{optflags} -I%{_libdir}/gprolog-`gprolog --version 2>&1 | head -1 | s
 
 #-----------------------------------------------------------------------
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %makeinstall_std
 
 # In order to avoid multiarch conflicts when installed for multiple
@@ -464,7 +464,7 @@ mv \
 
 #-----------------------------------------------------------------------
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 #-----------------------------------------------------------------------
 %if %mdkversion < 200900
