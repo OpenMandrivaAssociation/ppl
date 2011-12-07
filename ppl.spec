@@ -458,6 +458,7 @@ mv \
 %{buildroot}%{_javadocdir}/%{name}-java
 
 rm %{buildroot}%{_libdir}/*.la
+rm %{buildroot}%{_libdir}/ppl/*.la
 
 #-----------------------------------------------------------------------
 %clean
