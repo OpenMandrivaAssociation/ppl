@@ -18,7 +18,7 @@
 
 Name:		ppl
 Version:	%{version}
-Release:	%mkrel 4
+Release:	%mkrel 5
 Group:		Development/C
 Summary:	The Parma Polyhedra Library: a library of numerical abstractions
 License:	GPLv3+
@@ -100,7 +100,6 @@ its C and C++ interfaces.
 %{_bindir}/ppl-config
 %{_includedir}/ppl*.hh
 %{_libdir}/libppl.so
-%{_libdir}/libppl.la
 %{_mandir}/man1/ppl-config.1.*
 %{_mandir}/man3/libppl.3.*
 %{_datadir}/aclocal/ppl.m4
@@ -163,7 +162,6 @@ its C and C++ interfaces.
 %defattr(-,root,root,-)
 %{_includedir}/ppl_c*.h
 %{_libdir}/libppl_c.so
-%{_libdir}/libppl_c.la
 %{_mandir}/man3/libppl_c.3.*
 %{_datadir}/aclocal/ppl_c.m4
 
@@ -238,7 +236,6 @@ of the Parma Polyhedra Library.
 %files		gprolog-static
 %defattr(-,root,root,-)
 %{_libdir}/%{name}/libppl_gprolog.a
-%{_libdir}/%{name}/libppl_gprolog.la
 %endif
 
 #-----------------------------------------------------------------------
@@ -293,7 +290,6 @@ Install this package if you want to use the library in Java programs.
 %defattr(-,root,root,-)
 %doc interfaces/Java/README.java
 %{_libdir}/%{name}/libppl_java.so
-%{_libdir}/%{name}/libppl_java.la
 %{_libdir}/%{name}/ppl_java.jar
 
 #-----------------------------------------------------------------------
@@ -372,7 +368,6 @@ applications using the Parma Watchdog Library.
 %doc Watchdog/doc/README.doc
 %{_includedir}/pwl*.hh
 %{_libdir}/libpwl.so
-%{_libdir}/libpwl.la
 
 #-----------------------------------------------------------------------
 %package	-n %{libpwl_static_devel}
@@ -461,6 +456,8 @@ mkdir -p %{buildroot}%{_javadocdir}
 mv \
 %{buildroot}/%{_datadir}/doc/%{name}-%{version}/ppl-user-java-interface-%{version}-html \
 %{buildroot}%{_javadocdir}/%{name}-java
+
+rm %{buildroot}%{_libdir}/*.la
 
 #-----------------------------------------------------------------------
 %clean
