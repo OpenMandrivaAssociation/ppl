@@ -1,5 +1,5 @@
 %define		name			ppl
-%define		version			0.11
+%define		version			0.11.2
 
 %define		ppl_major		9
 %define		libppl			%mklibname ppl %ppl_major
@@ -18,18 +18,19 @@
 
 Name:		ppl
 Version:	%{version}
-Release:	%mkrel 5
+Release:	%mkrel 1
 Group:		Development/C
 Summary:	The Parma Polyhedra Library: a library of numerical abstractions
 License:	GPLv3+
-URL:		http://www.cs.unipr.it/ppl/
-Source0:	ftp://ftp.cs.unipr.it/pub/ppl/releases/%{version}/%{name}-%{version}.tar.bz2
+URL:		http://bugseng.com/products/ppl
+Source0:	http://bugseng.com/products/ppl/download/ftp/ppl/releases/%version/ppl-%version.tar.bz2
 Source1:	ppl.hh
 Source2:	ppl_c.h
 Source3:	pwl.hh
 Patch0:		ppl-0.10.2-Makefile.patch
+Patch1:		ppl-0.11.2-autoconf-2.68.patch
+Patch2:		ppl-0.11.2-automake-1.11.2.patch
 BuildRequires:	gmp-devel >= 4.1.3, gmpxx-devel >= 4.1.3, m4 >= 1.4.8
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 The Parma Polyhedra Library (PPL) is a library for the manipulation of
@@ -78,6 +79,7 @@ applications using the PPL through its C and C++ interfaces.
 %{_libdir}/libppl.so.%{ppl_major}
 %{_libdir}/libppl.so.%{ppl_major}.*
 %dir %{_libdir}/%{name}
+%dir %{_datadir}/%{name}
 %dir %{_datadir}/doc/%{name}-%{version}
 
 #-----------------------------------------------------------------------
@@ -221,7 +223,7 @@ Install this package if you want to use the library in GNU Prolog programs.
 %defattr(-,root,root,-)
 %doc interfaces/Prolog/GNU/README.gprolog
 %{_bindir}/ppl_gprolog
-%{_libdir}/%{name}/ppl_gprolog.pl
+%{_datadir}/%{name}/ppl_gprolog.pl
 %{_libdir}/%{name}/libppl_gprolog.so
 
 #-----------------------------------------------------------------------
@@ -404,15 +406,18 @@ Install this package if you want to program with the PWL.
 #-----------------------------------------------------------------------
 %prep
 %setup -q
-%patch0 -p1
+%patch0 -p1 -b .Makefile~
+%patch1 -p1 -b .ac268~
+%patch2 -p1 -b .am11~
 
 #-----------------------------------------------------------------------
 %build
+aclocal -I m4
 autoreconf -fi
 %ifnarch ia64 ppc64 s390 s390x %arm
 CPPFLAGS="%{optflags} -I%{_libdir}/gprolog-`gprolog --version 2>&1 | head -1 | sed -e "s/.* \([^ ]*\)$/\1/g"`/include"
 %endif
-%configure2_5x --docdir=%{_datadir}/doc/%{name}-%{version} --enable-shared --enable-interfaces="c++ c gnu_prolog java" CPPFLAGS="$CPPFLAGS"
+%configure --docdir=%{_datadir}/doc/%{name}-%{version} --enable-shared --enable-interfaces="c++ c gnu_prolog java" CPPFLAGS="$CPPFLAGS"
 #sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 #sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 #sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' Watchdog/libtool
