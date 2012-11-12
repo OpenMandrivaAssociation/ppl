@@ -1,0 +1,75 @@
+--- ppl-0.11.2/interfaces/Prolog/Ciao/Makefile.am.ark	2012-01-10 20:51:11.728033900 +0100
++++ ppl-0.11.2/interfaces/Prolog/Ciao/Makefile.am	2012-01-10 20:51:15.291989576 +0100
+@@ -170,7 +170,7 @@ $(NO_UNDEFINED_FLAG) \
+ -module \
+ -avoid-version
+ 
+-pkglib_DATA = ppl_ciao.po
++pkgdata_DATA = ppl_ciao.po
+ 
+ ppl_ciao.pl: $(interface_generator_dependencies)
+ 	$(M4) --prefix-builtin -I../.. -I$(srcdir)/.. -I$(srcdir)/../.. \
+--- ppl-0.11.2/interfaces/Prolog/GNU/Makefile.am.ark	2012-01-10 20:51:21.943906052 +0100
++++ ppl-0.11.2/interfaces/Prolog/GNU/Makefile.am	2012-01-10 20:51:26.371850082 +0100
+@@ -169,7 +169,7 @@ ppl_gprolog.pl: $(interface_generator_de
+ 	$(M4) --prefix-builtin -I../.. -I$(srcdir)/.. -I$(srcdir)/../.. \
+            $(srcdir)/ppl_interface_generator_gprolog_pl.m4 > $@
+ 
+-pkglib_DATA = ppl_gprolog.pl
++pkgdata_DATA = ppl_gprolog.pl
+ 
+ bin_PROGRAMS = ppl_gprolog
+ 
+--- ppl-0.11.2/interfaces/Prolog/SICStus/Makefile.am.ark	2012-01-10 20:51:34.978743167 +0100
++++ ppl-0.11.2/interfaces/Prolog/SICStus/Makefile.am	2012-01-10 20:53:08.042579630 +0100
+@@ -69,7 +69,7 @@ ppl_sicstus_SOURCES =
+ 
+ if ENABLE_SHARED
+ 
+-pkglib_DATA = ppl_sicstus.pl ppl_sicstus.s.o
++pkgdata_DATA = ppl_sicstus.pl ppl_sicstus.s.o
+ 
+ ppl_sicstus.so: ppl_sicstus.pl $(top_builddir)/src/libppl.la $(WATCHDOG_LIBRARY) libppl_sicstus.la
+ 	$(LIBTOOL) --mode=link --tag=CXX \
+@@ -87,7 +87,7 @@ install-data-local: ppl_sicstus.so
+ 
+ else !ENABLE_SHARED
+ 
+-pkglib_DATA = ppl_sicstus.pl
++pkgdata_DATA = ppl_sicstus.pl
+ 
+ endif !ENABLE_SHARED
+ 
+--- ppl-0.11.2/interfaces/Prolog/SWI/Makefile.am.ark	2012-01-10 20:51:44.055629689 +0100
++++ ppl-0.11.2/interfaces/Prolog/SWI/Makefile.am	2012-01-10 20:51:48.147579019 +0100
+@@ -189,7 +189,7 @@ $(NO_UNDEFINED_FLAG) \
+ bin_PROGRAMS = ppl_pl
+ ppl_pl_SOURCES = ppl_pl.cc
+ 
+-pkglib_DATA = ppl_swiprolog.pl
++pkgdata_DATA = ppl_swiprolog.pl
+ 
+ CLPQ_TESTS_NONSTRICT = \
+ ack.clpq \
+--- ppl-0.11.2/interfaces/Prolog/XSB/Makefile.am.ark	2012-01-10 20:51:54.063505832 +0100
++++ ppl-0.11.2/interfaces/Prolog/XSB/Makefile.am	2012-01-10 20:51:57.899456844 +0100
+@@ -188,7 +188,7 @@ $(NO_UNDEFINED_FLAG) \
+ -module \
+ -avoid-version
+ 
+-pkglib_DATA = ppl_xsb.xwam
++pkgdata_DATA = ppl_xsb.xwam
+ 
+ ppl_xsb.xwam: ppl_xsb.H ppl_xsb.cc libppl_xsb.la
+ 	cp -f ppl_xsb.cc ppl_xsb.c
+--- ppl-0.11.2/interfaces/Prolog/YAP/Makefile.am.ark	2012-01-10 20:52:03.759383362 +0100
++++ ppl-0.11.2/interfaces/Prolog/YAP/Makefile.am	2012-01-10 20:52:07.379338227 +0100
+@@ -179,7 +179,7 @@ $(NO_UNDEFINED_FLAG) \
+ -module \
+ -avoid-version
+ 
+-pkglib_DATA = ppl_yap.pl
++pkgdata_DATA = ppl_yap.pl
+ 
+ CLPQ_TESTS_NONSTRICT = \
+ ack.clpq \
