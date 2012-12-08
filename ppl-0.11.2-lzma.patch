@@ -1,0 +1,122 @@
+diff -urN ppl-0.11.2/configure.ac ppl-0.11.2-patched/configure.ac
+--- ppl-0.11.2/configure.ac	2011-02-27 19:07:47.000000000 +1000
++++ ppl-0.11.2-patched/configure.ac	2012-08-28 01:38:35.925634999 +1100
+@@ -40,7 +40,7 @@
+ AC_CANONICAL_HOST
+ 
+ # Use Automake.
+-AM_INIT_AUTOMAKE([foreign no-define dist-bzip2 dist-zip dist-lzma tar-ustar silent-rules 1.11])
++AM_INIT_AUTOMAKE([foreign no-define dist-bzip2 dist-zip dist-xz tar-ustar silent-rules 1.11])
+ 
+ AC_SUBST(VERSION)
+ 
+diff -urN ppl-0.11.2/Makefile.in ppl-0.11.2-patched/Makefile.in
+--- ppl-0.11.2/Makefile.in	2011-02-27 19:08:26.000000000 +1000
++++ ppl-0.11.2-patched/Makefile.in	2012-08-28 01:44:52.338635072 +1100
+@@ -162,7 +162,7 @@
+   done; \
+   reldir="$$dir2"
+ DIST_ARCHIVES = $(distdir).tar.gz $(distdir).tar.bz2 \
+-	$(distdir).tar.lzma $(distdir).zip
++	$(distdir).tar.xz $(distdir).zip
+ GZIP_ENV = --best
+ distuninstallcheck_listfiles = find . -type f -print
+ ACLOCAL = @ACLOCAL@
+@@ -679,9 +679,6 @@
+ dist-bzip2: distdir
+ 	tardir=$(distdir) && $(am__tar) | bzip2 -9 -c >$(distdir).tar.bz2
+ 	$(am__remove_distdir)
+-dist-lzma: distdir
+-	tardir=$(distdir) && $(am__tar) | lzma -9 -c >$(distdir).tar.lzma
+-	$(am__remove_distdir)
+ 
+ dist-xz: distdir
+ 	tardir=$(distdir) && $(am__tar) | xz -c >$(distdir).tar.xz
+@@ -702,7 +699,7 @@
+ dist dist-all: distdir
+ 	tardir=$(distdir) && $(am__tar) | GZIP=$(GZIP_ENV) gzip -c >$(distdir).tar.gz
+ 	tardir=$(distdir) && $(am__tar) | bzip2 -9 -c >$(distdir).tar.bz2
+-	tardir=$(distdir) && $(am__tar) | lzma -9 -c >$(distdir).tar.lzma
++	tardir=$(distdir) && $(am__tar) | xz -9 -c >$(distdir).tar.xz
+ 	-rm -f $(distdir).zip
+ 	zip -rq $(distdir).zip $(distdir)
+ 	$(am__remove_distdir)
+@@ -716,8 +713,6 @@
+ 	  GZIP=$(GZIP_ENV) gzip -dc $(distdir).tar.gz | $(am__untar) ;;\
+ 	*.tar.bz2*) \
+ 	  bzip2 -dc $(distdir).tar.bz2 | $(am__untar) ;;\
+-	*.tar.lzma*) \
+-	  lzma -dc $(distdir).tar.lzma | $(am__untar) ;;\
+ 	*.tar.xz*) \
+ 	  xz -dc $(distdir).tar.xz | $(am__untar) ;;\
+ 	*.tar.Z*) \
+@@ -889,7 +884,7 @@
+ .PHONY: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) CTAGS GTAGS \
+ 	all all-am am--refresh check check-am clean clean-generic \
+ 	clean-libtool ctags ctags-recursive dist dist-all dist-bzip2 \
+-	dist-gzip dist-hook dist-lzma dist-shar dist-tarZ dist-xz \
++	dist-gzip dist-hook dist-shar dist-tarZ dist-xz \
+ 	dist-zip distcheck distclean distclean-generic distclean-hdr \
+ 	distclean-libtool distclean-tags distcleancheck distdir \
+ 	distuninstallcheck dvi dvi-am html html-am info info-am \
+diff -urN ppl-0.11.2/Watchdog/configure.ac ppl-0.11.2-patched/Watchdog/configure.ac
+--- ppl-0.11.2/Watchdog/configure.ac	2011-02-27 19:07:47.000000000 +1000
++++ ppl-0.11.2-patched/Watchdog/configure.ac	2012-08-28 01:40:52.211634953 +1100
+@@ -40,7 +40,7 @@
+ AC_CANONICAL_HOST
+ 
+ # Use Automake.
+-AM_INIT_AUTOMAKE([foreign no-define dist-bzip2 dist-zip dist-lzma silent-rules 1.11])
++AM_INIT_AUTOMAKE([foreign no-define dist-bzip2 dist-zip dist-xz silent-rules 1.11])
+ AC_SUBST(VERSION)
+ 
+ # Generate a configuration header file.
+diff -urN ppl-0.11.2/Watchdog/Makefile.in ppl-0.11.2-patched/Watchdog/Makefile.in
+--- ppl-0.11.2/Watchdog/Makefile.in	2011-02-27 19:08:16.000000000 +1000
++++ ppl-0.11.2-patched/Watchdog/Makefile.in	2012-08-28 01:44:19.608634929 +1100
+@@ -136,7 +136,7 @@
+   done; \
+   reldir="$$dir2"
+ DIST_ARCHIVES = $(distdir).tar.gz $(distdir).tar.bz2 \
+-	$(distdir).tar.lzma $(distdir).zip
++	$(distdir).tar.xz $(distdir).zip
+ GZIP_ENV = --best
+ distuninstallcheck_listfiles = find . -type f -print
+ distcleancheck_listfiles = find . -type f -print
+@@ -560,9 +560,6 @@
+ dist-bzip2: distdir
+ 	tardir=$(distdir) && $(am__tar) | bzip2 -9 -c >$(distdir).tar.bz2
+ 	$(am__remove_distdir)
+-dist-lzma: distdir
+-	tardir=$(distdir) && $(am__tar) | lzma -9 -c >$(distdir).tar.lzma
+-	$(am__remove_distdir)
+ 
+ dist-xz: distdir
+ 	tardir=$(distdir) && $(am__tar) | xz -c >$(distdir).tar.xz
+@@ -583,7 +580,7 @@
+ dist dist-all: distdir
+ 	tardir=$(distdir) && $(am__tar) | GZIP=$(GZIP_ENV) gzip -c >$(distdir).tar.gz
+ 	tardir=$(distdir) && $(am__tar) | bzip2 -9 -c >$(distdir).tar.bz2
+-	tardir=$(distdir) && $(am__tar) | lzma -9 -c >$(distdir).tar.lzma
++	tardir=$(distdir) && $(am__tar) | xz -9 -c >$(distdir).tar.xz
+ 	-rm -f $(distdir).zip
+ 	zip -rq $(distdir).zip $(distdir)
+ 	$(am__remove_distdir)
+@@ -597,8 +594,6 @@
+ 	  GZIP=$(GZIP_ENV) gzip -dc $(distdir).tar.gz | $(am__untar) ;;\
+ 	*.tar.bz2*) \
+ 	  bzip2 -dc $(distdir).tar.bz2 | $(am__untar) ;;\
+-	*.tar.lzma*) \
+-	  lzma -dc $(distdir).tar.lzma | $(am__untar) ;;\
+ 	*.tar.xz*) \
+ 	  xz -dc $(distdir).tar.xz | $(am__untar) ;;\
+ 	*.tar.Z*) \
+@@ -770,7 +765,7 @@
+ .PHONY: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) CTAGS GTAGS \
+ 	all all-am am--refresh check check-am clean clean-generic \
+ 	clean-libtool ctags ctags-recursive dist dist-all dist-bzip2 \
+-	dist-gzip dist-hook dist-lzma dist-shar dist-tarZ dist-xz \
++	dist-gzip dist-hook dist-shar dist-tarZ dist-xz \
+ 	dist-zip distcheck distclean distclean-generic distclean-hdr \
+ 	distclean-libtool distclean-tags distcleancheck distdir \
+ 	distuninstallcheck dvi dvi-am html html-am info info-am \

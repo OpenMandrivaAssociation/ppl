@@ -1,5 +1,2 @@
 sources:
-  "ppl-0.11.2.tar.bz2:"	915f1d8a7def10e540bf2806babf94dccd15852a
-  "ppl_c.h:"	9e38db2fb9a9caad7ddca2e16ab21ece24fa9079
-  "ppl.hh:"	d0767d6cb0380a432a0fc815e953b5434184425d
-  "pwl.hh:"	075da7b8d7dc4b8ecffc1a083a99da4f7aa53993
+  "ppl-0.11.2.tar.bz2": 915f1d8a7def10e540bf2806babf94dccd15852a
