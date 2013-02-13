@@ -15,7 +15,7 @@
 
 Name:		ppl
 Version:	0.11.2
-Release:	3
+Release:	4
 Group:		Development/C
 Summary:	The Parma Polyhedra Library: a library of numerical abstractions
 License:	GPLv3+
@@ -28,6 +28,7 @@ Patch0:		ppl-0.10.2-Makefile.patch
 Patch1:		ppl-0.11.2-autoconf-2.68.patch
 Patch2:		ppl-0.11.2-automake-1.11.2.patch
 Patch3:		ppl-0.11.2-lzma.patch
+Patch4:		ppl-0.11.2-gmp-5.1.patch
 BuildRequires:	gmp-devel >= 4.1.3, gmpxx-devel >= 4.1.3, m4 >= 1.4.8
 
 %description
@@ -395,6 +396,7 @@ Install this package if you want to program with the PWL.
 %patch1 -p1 -b .ac268~
 %patch2 -p1 -b .am11~
 %patch3 -p1 -b .lzma~
+%patch4 -p1 -b .gmp51~
 
 #-----------------------------------------------------------------------
 %build
