@@ -1,21 +1,21 @@
-%define		ppl_major		9
-%define		libppl			%mklibname ppl %ppl_major
-%define 	libppl_devel		%mklibname -d ppl
-%define 	libppl_static_devel	%mklibname -d -s ppl
+%define ppl_major 9
+%define libppl %mklibname ppl %ppl_major
+%define libppl_devel %mklibname -d ppl
+%define libppl_static_devel %mklibname -d -s ppl
 
-%define		ppl_c_major		4
-%define		libppl_c		%mklibname ppl_c %ppl_c_major
-%define 	libppl_c_devel		%mklibname -d ppl_c
-%define 	libppl_c_static_devel	%mklibname -d -s ppl_c
+%define ppl_c_major 4
+%define libppl_c %mklibname ppl_c %ppl_c_major
+%define libppl_c_devel %mklibname -d ppl_c
+%define libppl_c_static_devel %mklibname -d -s ppl_c
 
-%define		pwl_major		5
-%define		libpwl			%mklibname pwl %pwl_major
-%define 	libpwl_devel		%mklibname -d pwl
-%define 	libpwl_static_devel	%mklibname -d -s pwl
+%define pwl_major 5
+%define libpwl %mklibname pwl %pwl_major
+%define libpwl_devel %mklibname -d pwl
+%define libpwl_static_devel %mklibname -d -s pwl
 
 Name:		ppl
 Version:	0.11.2
-Release:	4
+Release:	5
 Group:		Development/C
 Summary:	The Parma Polyhedra Library: a library of numerical abstractions
 License:	GPLv3+
@@ -29,7 +29,9 @@ Patch1:		ppl-0.11.2-autoconf-2.68.patch
 Patch2:		ppl-0.11.2-automake-1.11.2.patch
 Patch3:		ppl-0.11.2-lzma.patch
 Patch4:		ppl-0.11.2-gmp-5.1.patch
-BuildRequires:	gmp-devel >= 4.1.3, gmpxx-devel >= 4.1.3, m4 >= 1.4.8
+BuildRequires:	gmp-devel >= 4.1.3
+BuildRequires:	gmpxx-devel >= 4.1.3
+BuildRequires:	m4 >= 1.4.8
 
 %description
 The Parma Polyhedra Library (PPL) is a library for the manipulation of
