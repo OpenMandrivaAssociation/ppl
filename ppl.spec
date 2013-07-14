@@ -12,6 +12,7 @@
 %define libpwl %mklibname pwl %pwl_major
 %define libpwl_devel %mklibname -d pwl
 %define libpwl_static_devel %mklibname -d -s pwl
+%bcond_without	java
 
 Name:		ppl
 Version:	0.11.2
@@ -269,6 +270,7 @@ of the Parma Polyhedra Library.
 #%{_libdir}/%{name}/ppl_ocaml.mli
 
 #-----------------------------------------------------------------------
+%if %{with java}
 %package	java
 Summary:	The Java interface of the Parma Polyhedra Library
 Group:		Development/Java
@@ -300,6 +302,7 @@ of the Parma Polyhedra Library.
 
 %files		java-javadoc
 %{_javadocdir}/%{name}-java
+%endif
 
 #-----------------------------------------------------------------------
 %package	docs
@@ -446,11 +449,13 @@ install -m644 %{SOURCE2} %{buildroot}/%{_includedir}/ppl_c.h
 mv %{buildroot}/%{_includedir}/pwl.hh %{buildroot}/%{_includedir}/pwl-${normalized_arch}.hh
 install -m644 %{SOURCE3} %{buildroot}/%{_includedir}/pwl.hh
 
+%if %{with java}
 # Install the Javadocs for ppl-java.
 mkdir -p %{buildroot}%{_javadocdir}
 mv \
 %{buildroot}/%{_datadir}/doc/%{name}-%{version}/ppl-user-java-interface-%{version}-html \
 %{buildroot}%{_javadocdir}/%{name}-java
+%endif
 
 rm %{buildroot}%{_libdir}/*.la
 rm %{buildroot}%{_libdir}/ppl/*.la
