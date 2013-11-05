@@ -14,14 +14,14 @@
 %define libpwl_static_devel %mklibname -d -s pwl
 %bcond_without	java
 
+Summary:	The Parma Polyhedra Library: a library of numerical abstractions
 Name:		ppl
 Version:	0.11.2
 Release:	5
 Group:		Development/C
-Summary:	The Parma Polyhedra Library: a library of numerical abstractions
 License:	GPLv3+
-URL:		http://bugseng.com/products/ppl
-Source0:	http://bugseng.com/products/ppl/download/ftp/ppl/releases/%version/ppl-%version.tar.bz2
+Url:		http://bugseng.com/products/ppl
+Source0:	http://bugseng.com/products/ppl/download/ftp/ppl/releases/%{version}/ppl-%{version}.tar.bz2
 Source1:	ppl.hh
 Source2:	ppl_c.h
 Source3:	pwl.hh
@@ -30,9 +30,9 @@ Patch1:		ppl-0.11.2-autoconf-2.68.patch
 Patch2:		ppl-0.11.2-automake-1.11.2.patch
 Patch3:		ppl-0.11.2-lzma.patch
 Patch4:		ppl-0.11.2-gmp-5.1.patch
+BuildRequires:	m4 >= 1.4.8
 BuildRequires:	gmp-devel >= 4.1.3
 BuildRequires:	gmpxx-devel >= 4.1.3
-BuildRequires:	m4 >= 1.4.8
 
 %description
 The Parma Polyhedra Library (PPL) is a library for the manipulation of
@@ -48,14 +48,14 @@ software.  This package provides all what is necessary to run
 applications using the PPL through its C and C++ interfaces.
 
 #-----------------------------------------------------------------------
-%package	-n %{libppl}
+%package -n %{libppl}
 Group:		Development/C
 Summary:	The Parma Polyhedra Library: a library of numerical abstractions
 %if %mdkversion == 201100
 Conflicts:	%{mklibname ppl 7} = 0.11
 %endif
 
-%description	-n %{libppl}
+%description -n %{libppl}
 The Parma Polyhedra Library (PPL) is a library for the manipulation of
 (not necessarily closed) convex polyhedra and other numerical
 abstractions.  The applications of convex polyhedra include program
@@ -68,7 +68,7 @@ exception-safe, rather efficient, thoroughly documented, and free
 software.  This package provides all what is necessary to run
 applications using the PPL through its C and C++ interfaces.
 
-%files		-n %{libppl}
+%files -n %{libppl}
 %doc %{_datadir}/doc/%{name}-%{version}/BUGS
 %doc %{_datadir}/doc/%{name}-%{version}/COPYING
 %doc %{_datadir}/doc/%{name}-%{version}/CREDITS
@@ -77,8 +77,7 @@ applications using the PPL through its C and C++ interfaces.
 %doc %{_datadir}/doc/%{name}-%{version}/README.configure
 %doc %{_datadir}/doc/%{name}-%{version}/TODO
 %doc %{_datadir}/doc/%{name}-%{version}/gpl.txt
-%{_libdir}/libppl.so.%{ppl_major}
-%{_libdir}/libppl.so.%{ppl_major}.*
+%{_libdir}/libppl.so.%{ppl_major}*
 %dir %{_libdir}/%{name}
 # not needed if we not use prolog
 # arm ppc etc arches 
@@ -86,21 +85,19 @@ applications using the PPL through its C and C++ interfaces.
 %dir %{_datadir}/doc/%{name}-%{version}
 
 #-----------------------------------------------------------------------
-%package	-n %{libppl_devel}
+%package -n %{libppl_devel}
 Summary:	Development tools for the Parma Polyhedra Library C and C++ interfaces
 Group:		Development/C
 Requires:	%{libppl} = %{version}-%{release}
-Requires:	gmp-devel >= 4.1.3
-Requires:	gmpxx-devel >= 4.1.3
-Provides:	%{name}-devel = %version-%release
+Provides:	%{name}-devel = %{version}-%release
 Conflicts:	%{_lib}ppl7-devel < 0.11-3
 
-%description	-n %{libppl_devel}
+%description -n %{libppl_devel}
 The header files, Autoconf macro and minimal documentation for
 developing applications using the Parma Polyhedra Library through
 its C and C++ interfaces.
 
-%files		-n %{libppl_devel}
+%files -n %{libppl_devel}
 %{_bindir}/ppl-config
 %{_includedir}/ppl*.hh
 %{_libdir}/libppl.so
@@ -109,28 +106,28 @@ its C and C++ interfaces.
 %{_datadir}/aclocal/ppl.m4
 
 #-----------------------------------------------------------------------
-%package	-n %{libppl_static_devel}
+%package -n %{libppl_static_devel}
 Summary:	Static archives for the Parma Polyhedra Library C and C++ interfaces
 Group:		Development/C
 Requires:	%{name}-devel = %{version}-%{release}
 Provides:	libppl-static-devel = %{version}-%{release}
 Obsoletes:	%{_lib}ppl7-static-devel < 0.11-3
 
-%description	-n %{libppl_static_devel}
+%description -n %{libppl_static_devel}
 The static archives for the Parma Polyhedra Library C and C++ interfaces.
 
-%files		-n %{libppl_static_devel}
+%files -n %{libppl_static_devel}
 %{_libdir}/libppl.a
 
 #-----------------------------------------------------------------------
-%package	-n %{libppl_c}
+%package -n %{libppl_c}
 Group:		Development/C
 Summary:	The Parma Polyhedra Library: a library of numerical abstractions
 %if %mdkversion == 201100
 Conflicts:	%{mklibname ppl_c 2} = 0.11
 %endif
 
-%description	-n %{libppl_c}
+%description -n %{libppl_c}
 The Parma Polyhedra Library (PPL) is a library for the manipulation of
 (not necessarily closed) convex polyhedra and other numerical
 abstractions.  The applications of convex polyhedra include program
@@ -143,31 +140,30 @@ exception-safe, rather efficient, thoroughly documented, and free
 software.  This package provides all what is necessary to run
 applications using the PPL through its C and C++ interfaces.
 
-%files		-n %{libppl_c}
-%{_libdir}/libppl_c.so.%{ppl_c_major}
-%{_libdir}/libppl_c.so.%{ppl_c_major}.*
+%files -n %{libppl_c}
+%{_libdir}/libppl_c.so.%{ppl_c_major}*
 
 #-----------------------------------------------------------------------
-%package	-n %{libppl_c_devel}
+%package -n %{libppl_c_devel}
 Summary:	Development tools for the Parma Polyhedra Library C and C++ interfaces
 Group:		Development/C
 Requires:	%{libppl_c} = %{version}-%{release}
 Conflicts:	%{_lib}ppl-devel < 0.11-3
 Provides:	ppl_c-devel = %{version}-%{release}
 
-%description	-n %{libppl_c_devel}
+%description -n %{libppl_c_devel}
 The header files, Autoconf macro and minimal documentation for
 developing applications using the Parma Polyhedra Library through
 its C and C++ interfaces.
 
-%files		-n %{libppl_c_devel}
+%files -n %{libppl_c_devel}
 %{_includedir}/ppl_c*.h
 %{_libdir}/libppl_c.so
 %{_mandir}/man3/libppl_c.3.*
 %{_datadir}/aclocal/ppl_c.m4
 
 #-----------------------------------------------------------------------
-%package	-n %{libppl_c_static_devel}
+%package -n %{libppl_c_static_devel}
 Summary:	Static archives for the Parma Polyhedra Library C and C++ interfaces
 Group:		Development/C
 Requires:	%{libppl_c_devel} = %{version}-%{release}
@@ -175,10 +171,10 @@ Provides:	libppl_c-static-devel = %{version}-%{release}
 Provides:	ppl_c-static-devel = %{version}-%{release}
 Conflicts:	%{_lib}ppl7-static-devel
 
-%description	-n %{libppl_c_static_devel}
+%description -n %{libppl_c_static_devel}
 The static archives for the Parma Polyhedra Library C and C++ interfaces.
 
-%files		-n %{libppl_c_static_devel}
+%files -n %{libppl_c_static_devel}
 %{_libdir}/libppl_c.a
 
 #-----------------------------------------------------------------------
@@ -208,8 +204,6 @@ and the program ppl_lcdd for vertex/facet enumeration of convex polyhedra.
 Summary:	The GNU Prolog interface of the Parma Polyhedra Library
 Group:		Development/Other
 BuildRequires:	gprolog >= 1.2.19
-Requires:	%{libppl} = %{version}-%{release},
-Requires:	%{libpwl} = %{version}-%{release}
 Requires:	gprolog >= 1.2.19
 
 %description	gprolog
@@ -227,6 +221,7 @@ Install this package if you want to use the library in GNU Prolog programs.
 Summary:	The static archive for the GNU Prolog interface of the Parma Polyhedra Library
 Group:		Development/Other
 Requires:	%{name}-gprolog = %{version}-%{release}
+
 %description gprolog-static
 This package contains the static archive for the GNU Prolog interface
 of the Parma Polyhedra Library.
@@ -274,7 +269,8 @@ of the Parma Polyhedra Library.
 %package	java
 Summary:	The Java interface of the Parma Polyhedra Library
 Group:		Development/Java
-BuildRequires:	java-devel >= 0:1.6.0
+BuildRequires:	java-1.7.0-openjdk-devel
+#java-devel >= 0:1.6.0
 BuildRequires:	jpackage-utils
 Requires:	java >= 1.6.0
 Requires:	jpackage-utils
@@ -329,60 +325,59 @@ Install this package if you want to program with the PPL.
 %doc %{_datadir}/doc/%{name}-%{version}/ppl-user-*-interface-%{version}.ps.gz
 
 #-----------------------------------------------------------------------
-%package	-n %{libpwl}
+%package -n %{libpwl}
 Summary:	The Parma Watchdog Library: a C++ library for watchdog timers
 Group:		Development/C++
 %if %mdkversion == 201100
 Conflicts:	%{mklibname pwl 4} = 0.11
 %endif
 
-%description	 -n %{libpwl}
+%description -n %{libpwl}
 The Parma Watchdog Library (PWL) provides support for multiple,
 concurrent watchdog timers on systems providing setitimer(2).  This
 package provides all what is necessary to run applications using the
 PWL.  The PWL is currently distributed with the Parma Polyhedra
 Library, but is totally independent from it.
 
-%files		-n %{libpwl}
-%{_libdir}/libpwl.so.%{pwl_major}
-%{_libdir}/libpwl.so.%{pwl_major}.*
+%files -n %{libpwl}
+%{_libdir}/libpwl.so.%{pwl_major}*
 
 #-----------------------------------------------------------------------
-%package	-n %{libpwl_devel}
+%package -n %{libpwl_devel}
 Summary:	Development tools for the Parma Watchdog Library
 Group:		Development/C++
 Requires:	%{libpwl} = %{version}-%{release}
 Provides:	%{name}-pwl-devel = %{version}-%{release}
 Provides:	pwl-devel = %{version}-%{release}
 
-%description	-n %{libpwl_devel}
+%description -n %{libpwl_devel}
 The header files, documentation and static libraries for developing
 applications using the Parma Watchdog Library.
 
-%files		-n %{libpwl_devel}
+%files -n %{libpwl_devel}
 %doc Watchdog/doc/README.doc
 %{_includedir}/pwl*.hh
 %{_libdir}/libpwl.so
 
 #-----------------------------------------------------------------------
-%package	-n %{libpwl_static_devel}
+%package -n %{libpwl_static_devel}
 Summary:	Static archive for the Parma Watchdog Library
 Group:		Development/C++
 Requires:	%{name}-pwl-devel = %{version}-%{release}
 Provides: 	libpwl-static-devel = %{version}-%{release}
 Obsoletes:	%{_lib}pwl4-static-devel < 0.11-3
 
-%description	-n %{libpwl_static_devel}
+%description -n %{libpwl_static_devel}
 This package contains the static archive for the Parma Watchdog Library.
 
-%files		-n %{libpwl_static_devel}
+%files -n %{libpwl_static_devel}
 %{_libdir}/libpwl.a
 
 #-----------------------------------------------------------------------
 %package	pwl-docs
 Summary:	Documentation for the Parma Watchdog Library
 Group:		Development/C++
-Requires:	%{libpwl} = %{version}-%{release}
+#Requires:	%{libpwl} = %{version}-%{release}
 
 %description	pwl-docs
 This package contains all the documentations required by programmers
@@ -394,32 +389,28 @@ Install this package if you want to program with the PWL.
 %doc %{_datadir}/doc/%{name}-%{version}/pwl-user-0.8.pdf
 %doc %{_datadir}/doc/%{name}-%{version}/pwl-user-0.8.ps.gz
 
-#-----------------------------------------------------------------------
 %prep
 %setup -q
-%patch0 -p1 -b .Makefile~
-%patch1 -p1 -b .ac268~
-%patch2 -p1 -b .am11~
-%patch3 -p1 -b .lzma~
-%patch4 -p1 -b .gmp51~
+%apply_patches
 
-#-----------------------------------------------------------------------
-%build
 aclocal -I m4
 autoreconf -fi
+
+%build
 %ifnarch ia64 ppc64 s390 s390x %arm
 CPPFLAGS="%{optflags} -I%{_libdir}/gprolog-`gprolog --version 2>&1 | head -1 | sed -e "s/.* \([^ ]*\)$/\1/g"`/include"
 %endif
-%configure --docdir=%{_datadir}/doc/%{name}-%{version} --enable-shared --enable-interfaces="c++ c gnu_prolog java" CPPFLAGS="$CPPFLAGS"
+%configure \
+	--docdir=%{_datadir}/doc/%{name}-%{version} \
+	--enable-shared \
+	--enable-interfaces="c++ c gnu_prolog java" CPPFLAGS="$CPPFLAGS"
 #sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 #sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 #sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' Watchdog/libtool
 #sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' Watchdog/libtool
 %make
 
-#-----------------------------------------------------------------------
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
 # In order to avoid multiarch conflicts when installed for multiple
@@ -457,7 +448,6 @@ mv \
 %{buildroot}%{_javadocdir}/%{name}-java
 %endif
 
-rm %{buildroot}%{_libdir}/*.la
-rm %{buildroot}%{_libdir}/ppl/*.la
+#rm %{buildroot}%{_libdir}/*.la
+#rm %{buildroot}%{_libdir}/ppl/*.la
 
-#-----------------------------------------------------------------------
