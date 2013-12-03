@@ -398,7 +398,7 @@ aclocal -I m4
 autoreconf -fi
 
 %build
-%ifnarch ia64 ppc64 s390 s390x %arm
+%ifnarch ia64 ppc64 s390 s390x %arm aarch64
 CPPFLAGS="%{optflags} -I%{_libdir}/gprolog-`gprolog --version 2>&1 | head -1 | sed -e "s/.* \([^ ]*\)$/\1/g"`/include"
 %endif
 %configure \
