@@ -30,6 +30,7 @@ Patch1:		ppl-0.11.2-autoconf-2.68.patch
 Patch2:		ppl-0.11.2-automake-1.11.2.patch
 Patch3:		ppl-0.11.2-lzma.patch
 Patch4:		ppl-0.11.2-gmp-5.1.patch
+Patch5:		ppl-glpk-4.52.patch
 BuildRequires:	m4 >= 1.4.8
 BuildRequires:	gmp-devel >= 4.1.3
 BuildRequires:	gmpxx-devel >= 4.1.3
