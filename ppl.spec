@@ -12,7 +12,11 @@
 %define libpwl %mklibname pwl %pwl_major
 %define libpwl_devel %mklibname -d pwl
 %define libpwl_static_devel %mklibname -d -s pwl
+%if %{with crosscompile}
+%bcond_with	java
+%else
 %bcond_without	java
+%endif
 
 Summary:	The Parma Polyhedra Library: a library of numerical abstractions
 Name:		ppl
