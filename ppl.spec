@@ -407,6 +407,7 @@ CPPFLAGS="%{optflags} -I%{_libdir}/gprolog-`gprolog --version 2>&1 | head -1 | s
 %configure \
 	--docdir=%{_datadir}/doc/%{name}-%{version} \
 	--enable-shared \
+	--enable-static \
 	--enable-interfaces="c++ c gnu_prolog java" CPPFLAGS="$CPPFLAGS"
 #sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 #sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
