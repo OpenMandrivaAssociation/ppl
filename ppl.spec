@@ -81,7 +81,7 @@ applications using the PPL through its C and C++ interfaces.
 %doc %{_datadir}/doc/%{name}-%{version}/gpl.txt
 %{_libdir}/libppl.so.%{ppl_major}*
 %if !%{with crosscompile}
-%ifarch !%arm
+%ifnarch %arm
 %dir %{_libdir}/%{name}
 %endif
 %endif
