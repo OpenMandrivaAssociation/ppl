@@ -18,7 +18,7 @@
 Summary:	The Parma Polyhedra Library: a library of numerical abstractions
 Name:		ppl
 Version:	1.1
-Release:	1
+Release:	2
 Group:		Development/C
 License:	GPLv3+
 URL:		http://www.cs.unipr.it/ppl/
@@ -69,15 +69,15 @@ software.  This package provides all what is necessary to run
 applications using the PPL through its C and C++ interfaces.
 
 %files -n %{libppl}
-%dir %{_docdir}/%{name}
-%doc %{_docdir}/%{name}/BUGS
-%doc %{_docdir}/%{name}/COPYING
-%doc %{_docdir}/%{name}/CREDITS
-%doc %{_docdir}/%{name}/NEWS
-%doc %{_docdir}/%{name}/README
-%doc %{_docdir}/%{name}/README.configure
-%doc %{_docdir}/%{name}/TODO
-%doc %{_docdir}/%{name}/gpl.txt
+%dir %{_docdir}/%{name}-%{version}
+%doc %{_docdir}/%{name}-%{version}/BUGS
+%doc %{_docdir}/%{name}-%{version}/COPYING
+%doc %{_docdir}/%{name}-%{version}/CREDITS
+%doc %{_docdir}/%{name}-%{version}/NEWS
+%doc %{_docdir}/%{name}-%{version}/README
+%doc %{_docdir}/%{name}-%{version}/README.configure
+%doc %{_docdir}/%{name}-%{version}/TODO
+%doc %{_docdir}/%{name}-%{version}/gpl.txt
 %{_libdir}/libppl.so.%{ppl_major}*
 %if !%{with crosscompile}
 %ifnarch %arm
@@ -281,17 +281,17 @@ using the Parma Polyhedra Library (PPL).
 Install this package if you want to program with the PPL.
 
 %files		docs
-%doc %{_docdir}/%{name}/ChangeLog*
-%doc %{_docdir}/%{name}/README.doc
-%doc %{_docdir}/%{name}/fdl.*
-%doc %{_docdir}/%{name}/gpl.pdf
-%doc %{_docdir}/%{name}/gpl.ps.gz
-%doc %{_docdir}/%{name}/ppl-user-%{version}-html/
-%doc %{_docdir}/%{name}/ppl-user-*-interface-%{version}-html/
-%doc %{_docdir}/%{name}/ppl-user-%{version}.pdf
-%doc %{_docdir}/%{name}/ppl-user-*-interface-%{version}.pdf
-%doc %{_docdir}/%{name}/ppl-user-%{version}.ps.gz
-%doc %{_docdir}/%{name}/ppl-user-*-interface-%{version}.ps.gz
+%doc %{_docdir}/%{name}-%{version}/ChangeLog*
+%doc %{_docdir}/%{name}-%{version}/README.doc
+%doc %{_docdir}/%{name}-%{version}/fdl.*
+%doc %{_docdir}/%{name}-%{version}/gpl.pdf
+%doc %{_docdir}/%{name}-%{version}/gpl.ps.gz
+%doc %{_docdir}/%{name}-%{version}/ppl-user-%{version}-html/
+%doc %{_docdir}/%{name}-%{version}/ppl-user-*-interface-%{version}-html/
+%doc %{_docdir}/%{name}-%{version}/ppl-user-%{version}.pdf
+%doc %{_docdir}/%{name}-%{version}/ppl-user-*-interface-%{version}.pdf
+%doc %{_docdir}/%{name}-%{version}/ppl-user-%{version}.ps.gz
+%doc %{_docdir}/%{name}-%{version}/ppl-user-*-interface-%{version}.ps.gz
 
 %prep
 %setup -q
@@ -310,7 +310,7 @@ CPPFLAGS="$CPPFLAGS -I%{_libdir}/gprolog-`gprolog --version 2>&1 | head -1 | sed
 CPPFLAGS="$CPPFLAGS -I`swipl -dump-runtime-variables | grep PLBASE= | sed 's/PLBASE="\(.*\)";/\1/'`/include"
 CPPFLAGS="$CPPFLAGS -I%{_includedir}/Yap"
 %endif
-%configure --docdir=%{_docdir}/%{name} --enable-static --enable-shared --disable-rpath --enable-interfaces="c++ c gnu_prolog swi_prolog yap_prolog java" CPPFLAGS="$CPPFLAGS"
+%configure --docdir=%{_docdir}/%{name}-%{version} --enable-static --enable-shared --disable-rpath --enable-interfaces="c++ c gnu_prolog swi_prolog yap_prolog java" CPPFLAGS="$CPPFLAGS"
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 make %{?_smp_mflags}
@@ -348,6 +348,6 @@ install -m644 %{SOURCE2} %{buildroot}/%{_includedir}/ppl_c.h
 # Install the Javadocs for ppl-java.
 mkdir -p %{buildroot}%{_javadocdir}
 mv \
-%{buildroot}/%{_docdir}/%{name}/ppl-user-java-interface-%{version}-html \
+%{buildroot}/%{_docdir}/%{name}-%{version}/ppl-user-java-interface-%{version}-html \
 %{buildroot}%{_javadocdir}/%{name}-java
 %endif
