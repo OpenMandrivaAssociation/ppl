@@ -238,7 +238,7 @@ of the Parma Polyhedra Library.
 %package	java
 Summary:	The Java interface of the Parma Polyhedra Library
 Group:		Development/Java
-BuildRequires:	java-1.7.0-openjdk-devel
+BuildRequires:	java-devel
 #java-devel >= 0:1.6.0
 BuildRequires:	jpackage-utils
 Requires:	java >= 1.6.0
