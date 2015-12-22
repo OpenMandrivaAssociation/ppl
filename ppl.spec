@@ -1,3 +1,4 @@
+%define _disable_rebuild_configure 1
 %define ppl_major 13
 %define libppl %mklibname ppl %ppl_major
 %define libppl_devel %mklibname -d ppl
