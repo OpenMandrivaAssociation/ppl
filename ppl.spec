@@ -19,7 +19,7 @@
 Summary:	The Parma Polyhedra Library: a library of numerical abstractions
 Name:		ppl
 Version:	1.1
-Release:	5
+Release:	6
 Group:		Development/C
 License:	GPLv3+
 URL:		http://www.cs.unipr.it/ppl/
@@ -32,6 +32,7 @@ BuildRequires:	gmpxx-devel >= 4.1.3
 # Both patches backported from http://www.cs.unipr.it/git/?p=ppl/ppl.git
 #Patch0:		%{name}-gmp-5.1.0.patch
 #Patch1:		%{name}-glpk-4.52.patch
+Patch2:		ppl-PlLong.patch
 
 %description
 The Parma Polyhedra Library (PPL) is a library for the manipulation of
