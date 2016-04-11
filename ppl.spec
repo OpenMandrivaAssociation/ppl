@@ -202,7 +202,7 @@ and the program ppl_lcdd for vertex/facet enumeration of convex polyhedra.
 %{_mandir}/man1/ppl_pips.1*
 
 #-----------------------------------------------------------------------
-%ifnarch ia64 ppc64 s390 s390x %arm aarch64
+%ifnarch ia64 ppc64 s390 s390x %armx
 %package	gprolog
 # The `gprolog' package is not available on ppc64:
 # the GNU Prolog interface must thus be disabled for that architecture.
@@ -312,11 +312,13 @@ CPPFLAGS="$CPPFLAGS -I%{_libdir}/gprolog-`gprolog --version 2>&1 | head -1 | sed
 CPPFLAGS="$CPPFLAGS -I`swipl -dump-runtime-variables | grep PLBASE= | sed 's/PLBASE="\(.*\)";/\1/'`/include"
 CPPFLAGS="$CPPFLAGS -I%{_includedir}/Yap"
 %endif
+export CC=gcc
+export CXX=g++
 %configure --docdir=%{_docdir}/%{name}-%{version} --enable-static --enable-shared --disable-rpath --enable-interfaces="c++ c gnu_prolog swi_prolog yap_prolog java" CPPFLAGS="$CPPFLAGS"
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
-make %{?_smp_mflags}
-%make
+make %{?_smp_mflags} CC=gcc CXX=g++
+%make CXX=g++ CC=gcc
 
 %install
 %makeinstall_std
