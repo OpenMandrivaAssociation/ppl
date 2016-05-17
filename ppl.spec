@@ -1,5 +1,5 @@
 %define _disable_rebuild_configure 1
-%define ppl_major 13
+%define ppl_major 14
 %define libppl %mklibname ppl %ppl_major
 %define libppl_devel %mklibname -d ppl
 %define libppl_static_devel %mklibname -d -s ppl
@@ -18,8 +18,8 @@
 
 Summary:	The Parma Polyhedra Library: a library of numerical abstractions
 Name:		ppl
-Version:	1.1
-Release:	6
+Version:	1.2
+Release:	1
 Group:		Development/C
 License:	GPLv3+
 URL:		http://www.cs.unipr.it/ppl/
@@ -29,10 +29,7 @@ Source2:	ppl_c.h
 BuildRequires:	m4 >= 1.4.8
 BuildRequires:	gmp-devel >= 4.1.3
 BuildRequires:	gmpxx-devel >= 4.1.3
-# Both patches backported from http://www.cs.unipr.it/git/?p=ppl/ppl.git
-#Patch0:		%{name}-gmp-5.1.0.patch
-#Patch1:		%{name}-glpk-4.52.patch
-Patch2:		ppl-PlLong.patch
+BuildRequires:	java-devel
 
 %description
 The Parma Polyhedra Library (PPL) is a library for the manipulation of
@@ -294,6 +291,22 @@ Install this package if you want to program with the PPL.
 %doc %{_docdir}/%{name}-%{version}/ppl-user-*-interface-%{version}.pdf
 %doc %{_docdir}/%{name}-%{version}/ppl-user-%{version}.ps.gz
 %doc %{_docdir}/%{name}-%{version}/ppl-user-*-interface-%{version}.ps.gz
+
+#-----------------------------------------------------------------------
+%package	java
+Summary:	Java bindings to the Parma Polyhedra Library
+Group:		Development/Java
+Requires:	%{libppl} = %{version}-%{release}
+
+%description	docs
+This package contains Java bindings to the
+Parma Polyhedra Library (PPL).
+Install this package if you want to program with the PPL in Java.
+
+%files		java
+%dir %{_libdir}/ppl
+%{_libdir}/ppl/libppl_java.so
+%{_libdir}/ppl/*.jar
 
 %prep
 %setup -q
