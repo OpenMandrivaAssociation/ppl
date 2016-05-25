@@ -29,7 +29,9 @@ Source2:	ppl_c.h
 BuildRequires:	m4 >= 1.4.8
 BuildRequires:	gmp-devel >= 4.1.3
 BuildRequires:	gmpxx-devel >= 4.1.3
+%if %{with java}
 BuildRequires:	java-devel
+%endif
 
 %description
 The Parma Polyhedra Library (PPL) is a library for the manipulation of
