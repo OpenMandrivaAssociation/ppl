@@ -19,7 +19,7 @@
 Summary:	The Parma Polyhedra Library: a library of numerical abstractions
 Name:		ppl
 Version:	1.2
-Release:	2
+Release:	3
 Group:		Development/C
 License:	GPLv3+
 URL:		http://www.cs.unipr.it/ppl/
@@ -312,7 +312,7 @@ Install this package if you want to program with the PPL in Java.
 
 %prep
 %setup -q
-%apply_patches
+%utopatch -p1
 
 aclocal -I m4
 autoreconf -fi
@@ -333,10 +333,10 @@ export CXX=g++
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 make %{?_smp_mflags} CC=gcc CXX=g++
-%make CXX=g++ CC=gcc
+%make_build CXX=g++ CC=gcc
 
 %install
-%makeinstall_std
+%make_install
 
 # In order to avoid multiarch conflicts when installed for multiple
 # architectures (e.g., i386 and x86_64), we rename the header files
