@@ -293,7 +293,7 @@ Install this package if you want to program with the PPL.
 
 %prep
 %setup -q
-%utopatch -p1
+%autopatch -p1
 
 aclocal -I m4
 autoreconf -fi
