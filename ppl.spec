@@ -13,8 +13,8 @@
 %define libpwl %mklibname pwl %pwl_major
 %define libpwl_devel %mklibname -d pwl
 %define libpwl_static_devel %mklibname -d -s pwl
-%bcond_with	java
-%bcond_with	crosscompile
+%bcond_with java
+%bcond_with crosscompile
 
 Summary:	The Parma Polyhedra Library: a library of numerical abstractions
 Name:		ppl
@@ -50,9 +50,6 @@ applications using the PPL through its C and C++ interfaces.
 %package -n %{libppl}
 Group:		Development/C
 Summary:	The Parma Polyhedra Library: a library of numerical abstractions
-%if %mdkversion == 201100
-Conflicts:	%{mklibname ppl 7} = 0.11
-%endif
 # Merged into ppl as of 0.12
 %rename %{libpwl}
 
