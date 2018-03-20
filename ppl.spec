@@ -291,22 +291,6 @@ Install this package if you want to program with the PPL.
 %doc %{_docdir}/%{name}-%{version}/ppl-user-%{version}.ps.gz
 %doc %{_docdir}/%{name}-%{version}/ppl-user-*-interface-%{version}.ps.gz
 
-#-----------------------------------------------------------------------
-%package	java
-Summary:	Java bindings to the Parma Polyhedra Library
-Group:		Development/Java
-Requires:	%{libppl} = %{version}-%{release}
-
-%description	docs
-This package contains Java bindings to the
-Parma Polyhedra Library (PPL).
-Install this package if you want to program with the PPL in Java.
-
-%files		java
-%dir %{_libdir}/ppl
-%{_libdir}/ppl/libppl_java.so
-%{_libdir}/ppl/*.jar
-
 %prep
 %setup -q
 %utopatch -p1
