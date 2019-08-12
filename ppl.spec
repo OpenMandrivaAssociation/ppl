@@ -198,7 +198,7 @@ and the program ppl_lcdd for vertex/facet enumeration of convex polyhedra.
 %{_mandir}/man1/ppl_pips.1*
 
 #-----------------------------------------------------------------------
-%ifnarch ia64 ppc64 s390 s390x %armx
+%ifnarch ia64 ppc64 s390 s390x %armx %{riscv}
 %package	gprolog
 # The `gprolog' package is not available on ppc64:
 # the GNU Prolog interface must thus be disabled for that architecture.
