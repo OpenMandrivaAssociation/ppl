@@ -23,7 +23,7 @@ Release:	4
 Group:		Development/C
 License:	GPLv3+
 URL:		http://www.cs.unipr.it/ppl/
-Source0:	ftp://ftp.cs.unipr.it/pub/ppl/releases/%{version}/%{name}-%{version}.tar.xz
+Source0:	https://www.bugseng.com/products/ppl/download/ftp/releases/%{version}/ppl-%{version}.tar.xz
 Source1:	ppl.hh
 Source2:	ppl_c.h
 BuildRequires:	m4 >= 1.4.8
