@@ -19,7 +19,7 @@
 Summary:	The Parma Polyhedra Library: a library of numerical abstractions
 Name:		ppl
 Version:	1.2
-Release:	5
+Release:	6
 Group:		Development/C
 License:	GPLv3+
 URL:		https://www.bugseng.com/content/ppl-download
