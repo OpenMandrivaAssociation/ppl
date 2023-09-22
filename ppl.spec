@@ -16,6 +16,11 @@
 %bcond_with java
 %bcond_with crosscompile
 
+%if %{cross_compiling}
+# Because of libtool --mode=install bug
+%define prefer_gcc 1
+%endif
+
 Summary:	The Parma Polyhedra Library: a library of numerical abstractions
 Name:		ppl
 Version:	1.2
@@ -192,7 +197,12 @@ and the program ppl_lcdd for vertex/facet enumeration of convex polyhedra.
 
 %files		utils
 %{_bindir}/ppl_lcdd
+%if ! %{cross_compiling}
+# FIXME why doesn't ppl_lpsol get built when crosscompiling?
+# (And is it because we're crosscompiling, or should it really
+# be ifnarch riscv?)
 %{_bindir}/ppl_lpsol
+%endif
 %{_bindir}/ppl_pips
 %{_mandir}/man1/ppl_lcdd.1*
 %{_mandir}/man1/ppl_lpsol.1*
@@ -309,13 +319,12 @@ CPPFLAGS="$CPPFLAGS -I%{_libdir}/gprolog-`gprolog --version 2>&1 | head -1 | sed
 CPPFLAGS="$CPPFLAGS -I`swipl -dump-runtime-variables | grep PLBASE= | sed 's/PLBASE="\(.*\)";/\1/'`/include"
 CPPFLAGS="$CPPFLAGS -I%{_includedir}/Yap"
 %endif
-export CC=gcc
-export CXX=g++
+export CC="%{__cc}"
+export CXX="%{__cxx}"
 %configure --docdir=%{_docdir}/%{name}-%{version} --enable-static --enable-shared --disable-rpath --enable-interfaces="c++ c gnu_prolog swi_prolog yap_prolog java" CPPFLAGS="$CPPFLAGS"
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
-make %{?_smp_mflags} CC=gcc CXX=g++
-%make_build CXX=g++ CC=gcc
+%make_build CC="%{__cc}" CXX="%{__cxx}"
 
 %install
 %make_install
