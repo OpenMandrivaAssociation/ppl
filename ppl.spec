@@ -31,6 +31,11 @@ URL:		https://www.bugseng.com/content/ppl-download
 Source0:	https://www.bugseng.com/products/ppl/download/ftp/releases/%{version}/ppl-%{version}.tar.xz
 Source1:	ppl.hh
 Source2:	ppl_c.h
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	m4 >= 1.4.8
 BuildRequires:	gmp-devel >= 4.1.3
 BuildRequires:	gmpxx-devel >= 4.1.3
