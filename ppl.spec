@@ -27,7 +27,7 @@ Version:	1.2
 Release:	6
 Group:		Development/C
 License:	GPLv3+
-URL:		https://www.bugseng.com/content/ppl-download
+URL:		https://bugseng.com/ppl
 Source0:	https://www.bugseng.com/products/ppl/download/ftp/releases/%{version}/ppl-%{version}.tar.xz
 Source1:	ppl.hh
 Source2:	ppl_c.h
